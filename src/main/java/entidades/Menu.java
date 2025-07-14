@@ -8,33 +8,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
-/*public class Menu {
-    Scanner scanner = new Scanner(System.in);
-    
-    public Menu() {
-        List<Modalidade> modalidades = Repositorio.INSTANCE.modalidades();
-        
-        StringBuilder menuModalidades = new StringBuilder("==Menu de Modalidades==\n");                //adiciona item ao menu
-        for (int i = 0; i < modalidades.size(); i++) {                                       // monta o menu
-            menuModalidades.append(i + 1 + " - " + modalidades.get(i).getNome() + "\n");     //index + 1 resulta no numero correspondente ao menu para o usuario escolher
-        }
-        menuModalidades.append("0 - Finalizar e emitir parecer.\nEscolha uma das opções ");
-
-        int opcao = 0;
-        do {
-            System.out.println(menuModalidades);
-            opcao = scanner.nextInt() - 1;
-
-            if (opcao >= modalidades.size()) {
-                System.out.println("\n!!!! Selecione uma modalidade válida!!!\n");
-            } else if (opcao >= 0) {
-                modalidades.get(opcao).mostrarMenu(); //mostra o item do submenu do menu escolhido
-            }
-        } while (opcao >= 0);
-    }
-}
-*/
-
 public class Menu {
     Scanner scanner = new Scanner(System.in);
     private final String menuModalidades;
