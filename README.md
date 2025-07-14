@@ -8,6 +8,9 @@ geração de parecer conforme as modalidades definidas no regulamento.
 
 # Diagrama de UML
 
+![WhatsApp Image 2025-07-14 at 20 15 56](https://github.com/user-attachments/assets/3f9c88d0-152c-46e0-83ad-0f3cc09ecd86)
+
+
 # Padrões utilizados
 
 # Instruções de uso
