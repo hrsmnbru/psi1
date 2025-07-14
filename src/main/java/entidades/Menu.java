@@ -7,10 +7,12 @@ import util.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Stack;
 
 public class Menu {
     Scanner scanner = new Scanner(System.in);
     private final String menuModalidades;
+    private Stack<MenuCommand> historicoComandos = new Stack<>();
 
     public Menu() {
         this.menuModalidades = montaMenuModalidades();
@@ -18,9 +20,9 @@ public class Menu {
 
     private String montaMenuModalidades() {
         List<Modalidade> modalidades = Repositorio.INSTANCE.modalidades();
-        StringBuilder menuModalidades = new StringBuilder("==Menu de Modalidades==\n");                //adiciona item ao menu
-        for (int i = 0; i < modalidades.size(); i++) {                                       // monta o menu
-            menuModalidades.append(i + 1 + " - " + modalidades.get(i).getNome() + "\n");     //index + 1 resulta no numero correspondente ao menu para o usuario escolher
+        StringBuilder menuModalidades = new StringBuilder("==Menu de Modalidades==\n");
+        for (int i = 0; i < modalidades.size(); i++) {
+            menuModalidades.append(i + 1 + " - " + modalidades.get(i).getNome() + "\n");
         }
         return menuModalidades.append("0 - Finalizar e emitir parecer.\nEscolha uma das opções").toString();
     }
@@ -37,7 +39,7 @@ public class Menu {
             if (opcao >= modalidades.size()) {
                 System.out.println("\n!!!! Selecione uma modalidade válida!!!\n");
             } else if (opcao >= 0) {
-                var declaradas = mostraMenu(modalidades.get(opcao));
+                var declaradas = mostraMenu(modalidades.get(opcao), atividadesDeclaradas);
                 atividadesDeclaradas.addAll(declaradas);
             }
         } while (opcao >= 0);
@@ -60,7 +62,7 @@ public class Menu {
                 .toList();
     }
 
-    private List<AtividadeDeclarada> mostraMenu(Modalidade modalidade) {
+    private List<AtividadeDeclarada> mostraMenu(Modalidade modalidade, List<AtividadeDeclarada> atividadesJaDeclaradas) {
         List<Atividade> atividades = modalidade.atividades();
         StringBuilder menuAtividades = new StringBuilder("==Menu de Atividades==\n");
 
@@ -87,7 +89,11 @@ public class Menu {
                 System.out.println("Quantas horas nesta atividade vc fez?");
                 var horas = scanner.nextDouble();
                 var atividadeDeclarada = new AtividadeDeclarada(horas, atividadeSelecionada);
-                atividadesDeclaradas.add(atividadeDeclarada);
+                
+                // Usando Command Pattern
+                MenuCommand comando = new AdicionarAtividadeCommand(atividadeDeclarada, atividadesDeclaradas);
+                comando.executar();
+                historicoComandos.push(comando);
             }
         } while (opcao >= 0);
 

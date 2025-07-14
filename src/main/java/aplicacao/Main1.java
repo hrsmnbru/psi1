@@ -18,8 +18,12 @@ public class Main1 {
 
         Menu menu = new Menu();
         List<AtividadeDeclarada> atividadesDeclaradas = menu.mostraMenuERetornaAtividadesDeclaradas();
+        
+        Requerimento requerimento = new RequerimentoBuilder()
+                .setAluno(aluno)
+                .setAtividadesDeclaradas(atividadesDeclaradas)
+                .build();
 
-        Requerimento requerimento = new Requerimento(aluno, atividadesDeclaradas);
         requerimento.atividadesAvaliadas = menu.mostraMenuAvaliadorERetornaAvaliadas(requerimento.atividadesDeclaradas);
 
         try {
