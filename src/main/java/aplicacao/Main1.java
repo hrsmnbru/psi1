@@ -6,20 +6,6 @@ import util.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
-/*
-public class Main1 {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        
-        System.out.println("Digite o nome do Aluno: ");
-        Aluno aluno = new Aluno(scanner.next());
-        
-        System.out.println(aluno);
-        
-        Menu menu = new Menu();
-    }
-}
-*/
 
 public class Main1 {
     public static void main(String[] args) {
